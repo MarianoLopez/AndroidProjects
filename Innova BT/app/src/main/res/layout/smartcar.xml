@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+  <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_margin="10dp"
+          android:orientation="vertical">
+
+          <!--<ImageView
+                      android:id="@+id/imageView"
+                      android:layout_width="150dp"
+                      android:layout_height="150dp"
+                      android:scaleType="fitXY"
+                      android:layout_marginTop="15dp"
+                      android:layout_gravity="center"
+                      android:src="@drawable/auto2" />-->
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Direccionales"/>
+          <ImageButton
+              android:id="@+id/go_foward"
+              android:layout_width="55dp"
+              android:layout_height="70dp"
+              android:layout_gravity="center"
+              android:background="@null"
+              android:paddingTop="15dp"
+              android:scaleType="fitXY"
+              android:src="@drawable/up" />
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+              <ImageButton
+                  android:id="@+id/go_left"
+                  android:layout_width="55dp"
+                  android:layout_height="70dp"
+                  android:layout_margin="5dp"
+                  android:layout_toLeftOf="@+id/stop"
+                  android:background="@null"
+                  android:paddingTop="15dp"
+                  android:scaleType="fitXY"
+                  android:src="@drawable/left" />
+
+              <ImageButton
+                  android:id="@+id/stop"
+                  android:layout_width="55dp"
+                  android:layout_height="70dp"
+                  android:layout_centerHorizontal="true"
+                  android:layout_margin="5dp"
+                  android:background="@null"
+                  android:paddingTop="15dp"
+                  android:scaleType="fitXY"
+                  android:src="@drawable/stop" />
+
+              <ImageButton
+                  android:id="@+id/go_rigth"
+                  android:layout_width="55dp"
+                  android:layout_height="70dp"
+                  android:layout_margin="5dp"
+                  android:layout_toRightOf="@+id/stop"
+                  android:background="@null"
+                  android:paddingTop="15dp"
+                  android:scaleType="fitXY"
+                  android:src="@drawable/rigth" />
+          </RelativeLayout>
+
+          <ImageButton
+              android:id="@+id/go_back"
+              android:layout_width="55dp"
+              android:layout_height="70dp"
+              android:layout_gravity="center"
+              android:background="@null"
+              android:paddingTop="15dp"
+              android:scaleType="fitXY"
+              android:src="@drawable/backw" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Velocidad"/>
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:layout_margin="15dp">
+
+              <ImageView
+                  android:layout_width="70dp"
+                  android:layout_height="70dp"
+                  android:background="@null"
+                  android:scaleType="fitXY"
+                  android:src="@drawable/velocidad" />
+
+              <SeekBar
+                  android:id="@+id/velocidad"
+                  android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:layout_margin="5dp"
+                  android:max="255"
+                  android:progress="120" />
+          </LinearLayout>
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="15dp"
+              android:layout_alignParentBottom="true">
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/obs"
+                  android:text="Esquivar obstaculos"/>
+              <ImageButton
+                  android:id="@+id/automatico"
+                  android:layout_below="@+id/obs"
+                  android:layout_width="80dp"
+                  android:layout_height="100dp"
+                  android:layout_gravity="bottom|left"
+                  android:background="@null"
+                  android:paddingTop="5dp"
+                  android:scaleType="fitXY"
+                  android:src="@drawable/estrategia" />
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentEnd="true"
+                  android:gravity="right"
+                  android:id="@+id/lineas"
+                  android:text="Seguir línea"/>
+              <ImageButton
+                  android:id="@+id/linea"
+                  android:layout_width="80dp"
+                  android:layout_height="100dp"
+                  android:layout_alignParentEnd="true"
+                  android:layout_below="@+id/lineas"
+                  android:layout_gravity="bottom|right"
+                  android:background="@null"
+                  android:paddingTop="5dp"
+                  android:scaleType="fitXY"
+                  android:src="@drawable/way" />
+          </RelativeLayout>
+
+      </LinearLayout>
+    </ScrollView>
+    </LinearLayout>
