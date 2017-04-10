@@ -49,10 +49,18 @@ public class TabActivity extends AppCompatActivity implements ViewHolderZ {
 
     //tab 2
     private SeekBar rotacion, principal, secundario, terminal;
+
     private int rotacion_min = 0;
-    private int principal_min = 30;
-    private int secundario_min = 50;
+    private int principal_min = 40;
+    private int secundario_min = 60;
     private int terminal_min = 30;
+
+
+    private int rotacion_init= 90;
+    private int principal_init= 50;
+    private int secundario_init= 120;
+    private int terminal_init= 30;
+
 
     //tab 3
     private Button send;
@@ -112,10 +120,10 @@ public class TabActivity extends AppCompatActivity implements ViewHolderZ {
         principal = (SeekBar)findViewById(R.id.principal);
         secundario = (SeekBar)findViewById(R.id.secundario);
         terminal = (SeekBar)findViewById(R.id.terminal);
-        rotacion.setProgress(rotacion_min);
-        principal.setProgress(principal_min);
-        secundario.setProgress(secundario_min);
-        terminal.setProgress(terminal_min);
+        rotacion.setProgress(rotacion_init);
+        principal.setProgress(principal_init);
+        secundario.setProgress(secundario_init);
+        terminal.setProgress(terminal_init);
         initEvents2();
     }
     private void setupTab3(){
@@ -268,19 +276,18 @@ public class TabActivity extends AppCompatActivity implements ViewHolderZ {
         });
     }
     //enviar mensaje al socket
-    private void sendAction(String go){if(socket_status){try {v.vibrate(100);bt.write(go);} catch (IOException e) {showShortToast(e.toString());}}else{showShortToast("No hay bluetooth activado");}}
+    private void sendAction(String go){if(socket_status){try {v.vibrate(100);bt.write(go);showShortToast(go);} catch (IOException e) {showShortToast(e.toString());}}else{showShortToast("No hay bluetooth activado");}}
     //mensajes servo
     private void sendToServo(SeekBar servo, int progress, int min, String action){
         if(progress>=min){
-            //sendAction(action);
-            showShortToast(""+progress);
+            sendAction(action);
         }else{
             progress+=(min-progress);
             servo.setProgress(progress);
         }
     }
 
-    private void disconnectBT(){if(bt!=null){bt.cancel();}}
+    private void disconnectBT(){if(bt!=null){bt.cancel();socket_status=false;}}
     private void connectBT(){
         disconnectBT();
         final ProgressDialog pd = new ProgressDialog(TabActivity.this);
@@ -303,7 +310,7 @@ public class TabActivity extends AppCompatActivity implements ViewHolderZ {
                                         public void run() {
                                             send.setEnabled(true);
                                             showShortToast("Conectado");
-                                            host.setCurrentTab(0);//car
+                                            //host.setCurrentTab(0);//car
                                         }
                                     });
                                 }
