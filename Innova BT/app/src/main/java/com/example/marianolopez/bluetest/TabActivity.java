@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -150,7 +151,7 @@ public class TabActivity extends AppCompatActivity implements ViewHolderZ {
 
             }
         });
-        foward.setOnClickListener(new View.OnClickListener() {
+        /*foward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendAction("f");
@@ -172,6 +173,54 @@ public class TabActivity extends AppCompatActivity implements ViewHolderZ {
             @Override
             public void onClick(View v) {
                 sendAction("b");
+            }
+        });*/
+        foward.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    sendAction("f");
+                }
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    sendAction("s");
+                }
+                return true;
+            }
+        });
+        left.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    sendAction("l");
+                }
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    sendAction("s");
+                }
+                return true;
+            }
+        });
+        rigth.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    sendAction("r");
+                }
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    sendAction("s");
+                }
+                return true;
+            }
+        });
+        back.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    sendAction("b");
+                }
+                if(event.getAction() == MotionEvent.ACTION_UP){
+                    sendAction("s");
+                }
+                return true;
             }
         });
         stop.setOnClickListener(new View.OnClickListener() {
@@ -408,7 +457,7 @@ public class TabActivity extends AppCompatActivity implements ViewHolderZ {
     public boolean onContextItemSelected(MenuItem item){
         if(item.getTitle()=="Conectar"){
             connectBT();
-            setSelectedItemColor();
+            try{setSelectedItemColor();}catch(NullPointerException e){e.printStackTrace();}
         }
         else if(item.getTitle()=="Desconectar"){
             disconnectBT();
