@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -21,17 +23,24 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton foward,left,rigth,back,stop,auto,linea;
     private SeekBar velocidad;
     private Vibrator v;
+    private TabHost host;
     private VolleyCall volley;
     private Map<String, String> params;
-    private String url = "http://172.16.0.187:8080/?";
+    private EditText url;
+    //private String url = "http://172.16.0.187:8080/?";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        host = (TabHost)findViewById(R.id.tabHost);
+        host.setup();
+        host.addTab(newTab(host,"smartcar",R.id.tab1));
+        host.addTab(newTab(host,"config",R.id.tab2));
         this.volley = new VolleyCall(this);
         v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         setupTab1();
+        url = (EditText) findViewById(R.id.ip);
     }
 
     private void setupTab1(){
@@ -160,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         v.vibrate(100);
         /*params = new HashMap<String, String>();
         params.put("accion",go);*/
-        volley.call(url+"accion="+go, Request.Method.GET, null, new Response.Listener() {
+        volley.call(url.getText().toString()+"/?accion="+go, Request.Method.GET, null, new Response.Listener() {
             @Override
             public void onResponse(Object response) {
 
@@ -173,5 +182,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showShortToast(String mensaje){
-        Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_SHORT).show();}
+        Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_SHORT).show();
+    }
+
+    //para pestañas nuevas
+    private TabHost.TabSpec newTab(TabHost host,String name, int resource){
+        TabHost.TabSpec spec = host.newTabSpec(name);
+        spec.setContent(resource);
+        spec.setIndicator(name);
+        return spec;
+    }
 }
