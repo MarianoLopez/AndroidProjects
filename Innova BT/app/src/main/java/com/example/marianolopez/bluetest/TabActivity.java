@@ -325,7 +325,7 @@ public class TabActivity extends AppCompatActivity implements ViewHolderZ {
         });
     }
     //enviar mensaje al socket
-    private void sendAction(String go){if(socket_status){try {v.vibrate(100);bt.write(go);showShortToast(go);} catch (IOException e) {showShortToast(e.toString());}}else{showShortToast("No hay bluetooth activado");}}
+    private void sendAction(String go){if(socket_status){try {v.vibrate(100);bt.write(go);} catch (IOException e) {showShortToast(e.toString());}}else{showShortToast("No hay bluetooth activado");}}
     //mensajes servo
     private void sendToServo(SeekBar servo, int progress, int min, String action){
         if(progress>=min){
